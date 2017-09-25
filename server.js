@@ -18,10 +18,13 @@ app.get('/', function (req, res) {
 io.on('connection', function (socket) {
     console.log('a user connected');
 
-    if (turnon == true) {
+    if (turnon == '1') {
         socket.emit('message', 'Đang <b>bật</b>  tự động trả lời tin nhắn.');
     }
-    else if (turnon == false) {
+    else if (turnon == '2') {
+        socket.emit('message', 'Đang <b>bật</b> simi trả lời tin nhắn.');
+    }
+    else if (turnon == '0') {
         socket.emit('message', 'Đang <b>tắt</b> tự động trả lời tin nhắn.');
     }
     socket.on('disconnect', function () {
@@ -41,7 +44,7 @@ io.on('connection', function (socket) {
             socket.emit('message', 'Đã <b>tắt</b> tự động trả lời tin nhắn.');
         }
         else if (msg.trim() == '2') {
-            turnon = '0';
+            turnon = '2';
             socket.emit('message', 'Đã <b>bật</b> simi trả lời tin nhắn.');
         }
         else {
