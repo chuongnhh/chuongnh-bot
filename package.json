@@ -10,6 +10,7 @@
     "node": "~0.10.0 || ~4.2.0"
   },
   "dependencies": {
+    "simsimi": "^2.0.2",
     "socket.io": "^2.0.3"
   }
 }
