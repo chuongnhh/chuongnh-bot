@@ -83,11 +83,11 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
             // nhắn lần đầu tiên
             if (!answeredThreads.hasOwnProperty(message.threadID)) {
                 answeredThreads[message.threadID] = true;
-                api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online.", message.threadID);
+                api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online. [Tin nhắn được gửi tự động]", message.threadID);
             }
             else {
                 //api.sendMessage("Nếu có việc gấp, vui lòng liên hệ mình qua SĐT: 0164 7931 390", message.threadID);
-                api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online.", message.threadID);
+                api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online. [Tin nhắn được gửi tự động]", message.threadID);
             }
             return;
         }
@@ -98,7 +98,7 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
                     return console.error(err)
                 };
                 console.log('simsimi say:', rep);
-                api.sendMessage(rep, message.threadID);
+                api.sendMessage(rep+' - simi', message.threadID);
             });
             return;
         }
