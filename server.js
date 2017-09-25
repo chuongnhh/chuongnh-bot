@@ -37,14 +37,17 @@ io.on('connection', function (socket) {
         // turn on
         if (msg.trim() == '1') {
             turnon = '1';
+            console.log('1');
             socket.emit('message', 'Đã <b>bật</b> tự động trả lời tin nhắn.');
         }
         else if (msg.trim() == '0') {
             turnon = '0';
+            console.log('0');
             socket.emit('message', 'Đã <b>tắt</b> tự động trả lời tin nhắn.');
         }
         else if (msg.trim() == '2') {
             turnon = '2';
+            console.log('2');
             socket.emit('message', 'Đã <b>bật</b> simi trả lời tin nhắn.');
         }
         else {
@@ -73,10 +76,10 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
 
     api.listen(function callback(err, message) {
 
-        console.log(message.threadID);
+        console.log(message.body);
 
-        if (turnon == '0') { }
-        else if (turnon = '1') {
+        if (turnon == '0') { return; }
+        else if (turnon == '1') {
             // nhắn lần đầu tiên
             if (!answeredThreads.hasOwnProperty(message.threadID)) {
                 answeredThreads[message.threadID] = true;
@@ -86,6 +89,7 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
                 //api.sendMessage("Nếu có việc gấp, vui lòng liên hệ mình qua SĐT: 0164 7931 390", message.threadID);
                 api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online.", message.threadID);
             }
+            return;
         }
         else if (turnon == '2') {
             simsimi.listen(message.body, function (err, rep) {
