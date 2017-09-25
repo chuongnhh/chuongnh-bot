@@ -80,12 +80,6 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
             // nhắn lần đầu tiên
             if (!answeredThreads.hasOwnProperty(message.threadID)) {
                 answeredThreads[message.threadID] = true;
-
-                simsimi.listen('Đồ ngu', function (err, msg) {
-                    if (err) return console.error(err);
-                    console.log('simsimi say:', msg);
-                });
-
                 api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online.", message.threadID);
             }
             else {
