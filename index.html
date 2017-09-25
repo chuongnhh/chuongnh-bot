@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cài đặt - chuongnh</title>
+</head>
+
+<body>
+    <p id="messages">Không có thông báo</p>
+    <form action="">
+    <input id="m" autocomplete="off" /><button>Send command</button>
+    </form>
+    <p>Tắt bot nhập '0' (Không bao gồm dấu nháy)</p>
+    <p>Bật bot nhập '1' (Không bao gồm dấu nháy)</p>
+    <p>Để thay đổi câu trả lời tin nhắn. Vui lòng nhâp '[Câu trả lời của bạn]' (Không bao gồm dấu nháy)</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            //var socket = io('http://sharemyplace.azurewebsites.net/');
+            var socket = io();
+
+            $('form').submit(function () {
+                socket.emit('command', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('message', function (msg) {
+                $('#messages').html(msg);
+                $(document).scrollTop($(document).height());
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

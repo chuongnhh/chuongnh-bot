@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login - chuongnh</title>
+</head>
+
+<body>
+    <p id="messages">Không có thông báo</p>
+    <form action="">
+        <input id="un" type="text" autocomplete="off" />
+        <input id="pw" type="password" autocomplete="off" />
+        <button>Đăng nhập</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var socket = io();
+
+            $('form').submit(function () {
+                socket.emit('login', { un: $('#un').val(), pw: $('#pw').val() });
+                return false;
+            });
+            socket.on('login-result', function (msg) {
+                if (msg == '1') {
+                    return res.redirect('/index.html');
+                } else {
+                    $('#messages').html('Đăng nhập thất bại');
+                }
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
