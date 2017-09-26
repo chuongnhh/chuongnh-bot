@@ -84,10 +84,21 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
             if (!answeredThreads.hasOwnProperty(message.threadID)) {
                 answeredThreads[message.threadID] = true;
                 api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online. [Tin nhắn được gửi tự động]", message.threadID);
+                //api.sendMessage("Nhắn '1' để nhắn tin với bot. [Tin nhắn được gửi tự động]", message.threadID);
             }
             else {
                 //api.sendMessage("Nếu có việc gấp, vui lòng liên hệ mình qua SĐT: 0164 7931 390", message.threadID);
-                api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online. [Tin nhắn được gửi tự động]", message.threadID);
+                //api.sendMessage("Hiện tại mình đang đi ra ngoài, mình sẽ trả lời bạn ngay khi online. [Tin nhắn được gửi tự động]", message.threadID);
+                api.sendMessage("Nhắn '2' để nhắn tin với simi.", message.threadID);
+                api.sendMessage("Nhắn '0' để tắt nhắn tin với simi.", message.threadID);
+                if (message.body == '2') {
+                    api.sendMessage("Đã bật nhắn tin với simi", message.threadID);
+                }
+                else{
+                    if (message.body == '0') {
+                        api.sendMessage("Đã tắt nhắn tin với simi", message.threadID);
+                    }
+                }
             }
             return;
         }
@@ -98,7 +109,7 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
                     return console.error(err)
                 };
                 console.log('simsimi say:', rep);
-                api.sendMessage(rep+' - simi', message.threadID);
+                api.sendMessage(rep + ' - simi', message.threadID);
             });
             return;
         }
