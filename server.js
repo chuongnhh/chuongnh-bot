@@ -92,13 +92,14 @@ login({ email: "chuongnh.hcm@gmail.com", password: "&&**chuongnh.HCM" }, functio
                 api.sendMessage("Nhắn '2' để nhắn tin với simi.", message.threadID);
                 api.sendMessage("Nhắn '0' để tắt nhắn tin với simi.", message.threadID);
                 if (message.body == '2') {
+                    turnon = 2;
                     api.sendMessage("Đã bật nhắn tin với simi", message.threadID);
                 }
-                else{
-                    if (message.body == '0') {
-                        api.sendMessage("Đã tắt nhắn tin với simi", message.threadID);
-                    }
+                else if (message.body == '0') {
+                    turnon = 0;
+                    api.sendMessage("Đã tắt nhắn tin với simi", message.threadID);
                 }
+
             }
             return;
         }
